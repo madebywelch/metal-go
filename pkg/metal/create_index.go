@@ -14,7 +14,7 @@ type CreateIndexRequest struct {
 	AppID      string `json:"app"`
 	Name       string `json:"name"`
 	Model      string `json:"model"`
-	Dimensions int    `json:"dimensions"`
+	Dimensions int    `json:"dimensions,omitempty"` // optional
 }
 
 // CreateIndexResponse represents the response from the /apps/{appId}/indexes POST request.

@@ -11,8 +11,10 @@ import (
 
 // SearchRequest represents the data required for the /search POST request.
 type SearchRequest struct {
-	App  string `json:"app"`
-	Text string `json:"text"`
+	App       string    `json:"app"`
+	Text      string    `json:"text,omitempty"`      // optional
+	ImageURL  string    `json:"imageUrl,omitempty"`  // optional
+	Embedding []float64 `json:"embedding,omitempty"` // optional
 }
 
 // SearchResult represents a single search result item.
@@ -26,6 +28,10 @@ type SearchResult struct {
 type SearchResponse struct {
 	Data []SearchResult `json:"data"`
 }
+
+// TODO: Add support for the following parameters:
+// - limit
+// - idsOnly
 
 // Search - This endpoint searches for the closest Documents(embeddings)
 func (c *Client) Search(req SearchRequest) (*SearchResponse, error) {
