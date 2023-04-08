@@ -55,6 +55,43 @@ client, err := metal.NewClient(
 )
 ```
 
+## Sending Hundreds of Requests Concurrently with WorkerPool
+
+The WorkerPool utility can be used to efficiently send a large number of requests concurrently. This example demonstrates how to use the WorkerPool to send hundreds of Index requests to the Metal API.
+
+```go
+func main() {
+	client, err := metal.NewClient(apiKey, clientID)
+	if err != nil {
+		panic(err)
+	}
+
+	workerCount := 10 // Number of workers
+	requestCount := 100 // Number of requests to send
+	wp := utils.NewWorkerPool(workerCount)
+
+	// Add tasks to the worker pool
+	for i := 0; i < requestCount; i++ {
+		indexReq := metal.IndexRequest{
+			App:  "sample_app",
+			Text: fmt.Sprintf("Text %d", i),
+		}
+
+		wp.AddTask(func() {
+			indexResp, err := client.Index(indexReq)
+			if err != nil {
+				fmt.Printf("Error indexing request %d: %s\n", i, err)
+			} else {
+				fmt.Printf("Indexed request %d, created document with ID: %s\n", i, indexResp.Data.ID)
+			}
+		})
+	}
+
+	// Wait for all tasks to complete and close the worker pool
+	wp.CloseAndWait()
+}
+```
+
 ## Contributing
 
 Contributions to this project are welcome. To contribute, follow these steps:
