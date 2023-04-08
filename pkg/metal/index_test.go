@@ -30,10 +30,12 @@ func TestIndex(t *testing.T) {
 		}
 
 		resp := IndexResponse{
-			CreatedAt: time.Now(),
-			ID:        "test_document_id",
-			Metadata:  req.Metadata,
-			Text:      req.Text,
+			Data: IndexResponseData{
+				CreatedAt: time.Now(),
+				ID:        "test_document_id",
+				Metadata:  req.Metadata,
+				Text:      req.Text,
+			},
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -67,12 +69,12 @@ func TestIndex(t *testing.T) {
 			t.Fatalf("Expected response, but got nil")
 		}
 
-		if resp.ID != "test_document_id" {
-			t.Errorf("Expected document ID to be 'test_document_id', but got %s", resp.ID)
+		if resp.Data.ID != "test_document_id" {
+			t.Errorf("Expected document ID to be 'test_document_id', but got %s", resp.Data.ID)
 		}
 
-		if !bytes.Equal([]byte(resp.Text), []byte(req.Text)) {
-			t.Errorf("Expected document text to be '%s', but got '%s'", req.Text, resp.Text)
+		if !bytes.Equal([]byte(resp.Data.Text), []byte(req.Text)) {
+			t.Errorf("Expected document text to be '%s', but got '%s'", req.Text, resp.Data.Text)
 		}
 	})
 }
