@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
+	"time"
 )
 
 func TestCreateIndex(t *testing.T) {
@@ -36,7 +37,7 @@ func TestCreateIndex(t *testing.T) {
 	}))
 	defer ts.Close()
 
-	client, err := NewClient("test_api_key", "test_client_id")
+	client, err := NewClient("test_api_key", "test_client_id", WithMaxRetries(3), WithRetryDelay(2*time.Second))
 	if err != nil {
 		t.Fatal(err)
 	}

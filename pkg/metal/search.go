@@ -50,7 +50,7 @@ func (c *Client) Search(req SearchRequest) (*SearchResponse, error) {
 	request.Header.Set("x-metal-api-key", c.apiKey)
 	request.Header.Set("x-metal-client-id", c.clientID)
 
-	response, err := c.httpClient.Do(request)
+	response, err := c.doRequest(request)
 	if err != nil {
 		return nil, err
 	}
