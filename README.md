@@ -40,6 +40,21 @@ func main() {
 }
 ```
 
+## Automatic Retries
+
+This unofficial Metal API client SDK supports automatic retries for requests that fail or return unexpected status codes. By using the `WithMaxRetries` and `WithRetryDelay` options, you can configure the client to automatically retry failed requests up to a specified number of times with a specified delay between attempts. This can help improve the reliability of your API calls, particularly in case of temporary network issues or server-side errors.
+
+**Example:**
+
+```go
+client, err := metal.NewClient(
+	apiKey,
+	clientID,
+	metal.WithMaxRetries(5),               // Retry up to 5 times
+	metal.WithRetryDelay(3 * time.Second), // 3-second delay between retries
+)
+```
+
 ## Contributing
 
 Contributions to this project are welcome. To contribute, follow these steps:
@@ -53,3 +68,7 @@ Contributions to this project are welcome. To contribute, follow these steps:
 ## License
 
 This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
+
+```
+
+```
