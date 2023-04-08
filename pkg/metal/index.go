@@ -13,9 +13,10 @@ import (
 // IndexRequest represents the data required for the /index POST request.
 type IndexRequest struct {
 	App      string                 `json:"app"`
-	Text     string                 `json:"text"`
-	ID       string                 `json:"id"`
-	Metadata map[string]interface{} `json:"metadata"`
+	Text     string                 `json:"text,omitempty"`     // optional
+	ImageURL string                 `json:"imageUrl,omitempty"` // optional
+	ID       string                 `json:"id,omitempty"`       // optional
+	Metadata map[string]interface{} `json:"metadata,omitempty"` // optional
 }
 
 // IndexResponseData represents the data field in the IndexResponse.
