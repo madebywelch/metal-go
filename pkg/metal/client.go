@@ -15,7 +15,6 @@ type Client struct {
 
 // NewClient initializes a new Metal API client with the required headers.
 func NewClient(apiKey, clientID string) (*Client, error) {
-	// Validate input
 	if apiKey == "" || clientID == "" {
 		return nil, errors.New("apiKey and clientID are required")
 	}
