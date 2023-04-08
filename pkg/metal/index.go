@@ -18,12 +18,17 @@ type IndexRequest struct {
 	Metadata map[string]interface{} `json:"metadata"`
 }
 
-// IndexResponse represents the response from the /index POST request.
-type IndexResponse struct {
+// IndexResponseData represents the data field in the IndexResponse.
+type IndexResponseData struct {
 	CreatedAt time.Time              `json:"createdAt"`
 	ID        string                 `json:"id"`
 	Metadata  map[string]interface{} `json:"metadata"`
 	Text      string                 `json:"text"`
+}
+
+// IndexResponse represents the response from the /index POST request.
+type IndexResponse struct {
+	Data IndexResponseData `json:"data"`
 }
 
 // Index - This endpoint generates and stores a Document(embedding) with the inputted data.
