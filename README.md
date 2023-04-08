@@ -4,6 +4,10 @@ This project provides an unofficial Go SDK for Metal, a production ready, fully-
 
 [![GoDoc](https://godoc.org/github.com/madebywelch/metal-go?status.svg)](https://pkg.go.dev/github.com/madebywelch/metal-go)
 
+## API Coverage
+
+As of April 8th 2023, this Metal SDK for Go provides full API coverage for Metal Technologies Inc. All available endpoints for Metal API have been implemented in this SDK.
+
 ## Installation
 
 You can install the Metal SDK in Go using go get:
@@ -17,19 +21,23 @@ go get github.com/madebywelch/metal-go
 To use the Metal SDK, you'll need to initialize a client and make requests to the Metal API. Here's an example of initializing a client and performing a search:
 
 ```go
-client := metal.NewClient(apiKey, clientID)
+import "github.com/madebywelch/metal-go/pkg/metal"
 
-searchReq := metal.SearchRequest{
-    App:  "your_app_name",
-    Text: "your_search_text",
+func main() {
+    client := metal.NewClient(apiKey, clientID)
+
+    searchReq := metal.SearchRequest{
+        App:  "your_app_name",
+        Text: "your_search_text",
+    }
+
+    searchResp, err := client.Search(searchReq)
+    if err != nil {
+        panic(err)
+    }
+
+    fmt.Printf("Search results: %v\n", searchResp.Data)
 }
-
-searchResp, err := client.Search(searchReq)
-if err != nil {
-    panic(err)
-}
-
-fmt.Printf("Search results: %v\n", searchResp.Data)
 ```
 
 ## Contributing
