@@ -11,16 +11,19 @@ import (
 
 // CreateIndexRequest represents the data required for the /apps/{appId}/indexes POST request.
 type CreateIndexRequest struct {
-	ID         string `json:"id"`
-	Name       string `json:"name"`
 	AppID      string `json:"app"`
+	Name       string `json:"name"`
 	Model      string `json:"model"`
 	Dimensions int    `json:"dimensions"`
 }
 
 // CreateIndexResponse represents the response from the /apps/{appId}/indexes POST request.
 type CreateIndexResponse struct {
-	Data IndexData `json:"data"`
+	ID         string `json:"id"`
+	Name       string `json:"name"`
+	AppID      string `json:"app"`
+	Model      string `json:"model"`
+	Dimensions int    `json:"dimensions"`
 }
 
 // CreateIndex - This endpoint creates an index for an app.

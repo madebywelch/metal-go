@@ -24,13 +24,11 @@ func TestCreateIndex(t *testing.T) {
 		}
 
 		resp := CreateIndexResponse{
-			Data: IndexData{
-				ID:         "1",
-				Name:       req.Name,
-				App:        req.AppID,
-				Model:      req.Model,
-				Dimensions: req.Dimensions,
-			},
+			ID:         "1",
+			Name:       req.Name,
+			AppID:      req.AppID,
+			Model:      req.Model,
+			Dimensions: req.Dimensions,
 		}
 
 		w.Header().Set("Content-Type", "application/json")
@@ -58,23 +56,23 @@ func TestCreateIndex(t *testing.T) {
 			t.Fatalf("Unexpected error: %v", err)
 		}
 
-		if resp.Data.App != req.AppID {
-			t.Errorf("Expected AppID to be %s, but got %s", req.AppID, resp.Data.App)
+		if resp.AppID != req.AppID {
+			t.Errorf("Expected AppID to be %s, but got %s", req.AppID, resp.AppID)
 		}
 
-		if resp.Data.Model != req.Model {
-			t.Errorf("Expected Model to be %s, but got %s", req.Model, resp.Data.Model)
+		if resp.Model != req.Model {
+			t.Errorf("Expected Model to be %s, but got %s", req.Model, resp.Model)
 		}
 
-		if resp.Data.Name != req.Name {
-			t.Errorf("Expected Name to be %s, but got %s", req.Name, resp.Data.Name)
+		if resp.Name != req.Name {
+			t.Errorf("Expected Name to be %s, but got %s", req.Name, resp.Name)
 		}
 
-		if resp.Data.Dimensions != req.Dimensions {
-			t.Errorf("Expected Dimensions to be %d, but got %d", req.Dimensions, resp.Data.Dimensions)
+		if resp.Dimensions != req.Dimensions {
+			t.Errorf("Expected Dimensions to be %d, but got %d", req.Dimensions, resp.Dimensions)
 		}
 
-		if resp.Data.ID == "" {
+		if resp.ID == "" {
 			t.Error("Expected index ID to be non-empty")
 		}
 	})
