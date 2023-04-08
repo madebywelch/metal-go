@@ -105,7 +105,3 @@ Contributions to this project are welcome. To contribute, follow these steps:
 ## License
 
 This project is licensed under the Apache License, Version 2.0 - see the [LICENSE](LICENSE) file for details.
-
-```
-
-```
