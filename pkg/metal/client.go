@@ -76,7 +76,7 @@ func (c *Client) doRequest(request *http.Request) (*http.Response, error) {
 	for i := 0; i <= retries; i++ {
 		response, err = c.httpClient.Do(request)
 		if err == nil {
-			if response.StatusCode == http.StatusOK {
+			if response.StatusCode >= http.StatusOK && response.StatusCode < http.StatusMultipleChoices {
 				break
 			} else {
 				err = fmt.Errorf("unexpected status code: %d", response.StatusCode)
