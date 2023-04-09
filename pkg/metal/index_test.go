@@ -9,31 +9,6 @@ import (
 	"time"
 )
 
-func TestIndexFunctional(t *testing.T) {
-	client, err := NewClient("pk_cfteLJe6AxU6vkysyGSKZtZIRoAFTdsyfzV4dprMWp0=", "ci_EKrYkg/TGVJqX61HgG3pFCXCGybfZZAdWeqRYHGP25c=")
-	if err != nil {
-		t.Fatal(err)
-	}
-
-	t.Run("indexes a document", func(t *testing.T) {
-		r, err := client.Index(IndexRequest{
-			App:  "642811e5c4272a4b71536690",
-			Text: "test_index_test",
-		})
-		if err != nil {
-			t.Fatal(err)
-		}
-
-		if r == nil {
-			t.Fatal("Expected response, but got nil")
-		}
-
-		if r.Data.ID == "" {
-			t.Fatal("Expected document ID, but got empty string")
-		}
-	})
-}
-
 func TestIndex(t *testing.T) {
 	ts := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if r.Method != http.MethodPost {
