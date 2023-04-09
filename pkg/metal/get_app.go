@@ -2,7 +2,6 @@ package metal
 
 import (
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -45,10 +44,6 @@ func (c *Client) GetApp(req GetAppRequest) (*GetAppResponse, error) {
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
-	}
-
-	if response.StatusCode != http.StatusOK {
-		return nil, errors.New(string(body))
 	}
 
 	var getAppResponse GetAppResponse
