@@ -3,7 +3,6 @@ package metal
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -57,10 +56,6 @@ func (c *Client) Tune(req TuneRequest) (*TuneResponse, error) {
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
-	}
-
-	if response.StatusCode != http.StatusOK {
-		return nil, errors.New(string(body))
 	}
 
 	var tuneResponse TuneResponse

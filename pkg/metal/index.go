@@ -3,7 +3,6 @@ package metal
 import (
 	"bytes"
 	"encoding/json"
-	"errors"
 	"fmt"
 	"io/ioutil"
 	"net/http"
@@ -58,10 +57,6 @@ func (c *Client) Index(req IndexRequest) (*IndexResponse, error) {
 	body, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		return nil, err
-	}
-
-	if response.StatusCode != http.StatusOK {
-		return nil, errors.New(string(body))
 	}
 
 	var indexResponse IndexResponse
