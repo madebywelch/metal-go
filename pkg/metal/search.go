@@ -19,9 +19,11 @@ type SearchRequest struct {
 
 // SearchResult represents a single search result item.
 type SearchResult struct {
-	ID       string                 `json:"id"`
-	Dist     string                 `json:"dist"`
-	Metadata map[string]interface{} `json:"metadata"`
+	Dist      string                 `json:"dist"`
+	ID        string                 `json:"id"`
+	Text      string                 `json:"text"`
+	Metadata  map[string]interface{} `json:"metadata"`
+	CreatedAt string                 `json:"createdAt"`
 }
 
 // SearchResponse represents the response from the /search POST request.
